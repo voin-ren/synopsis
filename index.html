@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System with Online Booking </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Indigo/Slate (Professional & Relaxing) -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        /* Styles for section toggling */
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        /* Styles for navigation links */
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link.active {
+            background-color: #4338ca; /* Indigo-700 */
+            color: white;
+            transform: translateX(4px);
+        }
+        /* Styles for interactive elements */
+        .workflow-step, .module-box {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border-width: 2px;
+        }
+        .workflow-step.selected, .module-box.selected {
+            border-color: #4f46e5; /* Indigo-600 */
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-white md:border-r border-b md:border-b-0 border-slate-200 shrink-0">
+            <div class="p-6 border-b border-slate-200">
+                <h1 class="text-xl font-bold text-indigo-700">Hotel Mgmt. System</h1>
+                <p class="text-sm text-slate-500 mt-1">Project Synopsis & Proposal</p>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li><a href="#overview" data-target="overview" class="nav-link active flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>🏠</span> Overview</a></li>
+                    <li><a href="#features" data-target="features" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>🔑</span> Core Features</a></li>
+                    <li><a href="#workflow" data-target="workflow" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>💡</span> Booking Workflow</a></li>
+                    <li><a href="#architecture" data-target="architecture" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>💻</span> System Architecture</a></li>
+                    <li><a href="#benefits" data-target="benefits" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>✨</span> System Benefits</a></li>
+                    <li><a href="#future" data-target="future" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>🚀</span> Future Enhancements</a></li>
+                    <li><a href="#conclusion" data-target="conclusion" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-slate-700 font-medium hover:bg-indigo-100"><span>✅</span> Conclusion</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 sm:p-8 md:p-12 overflow-y-auto">
+            
+            <!-- 1. Overview Section (Intro, Objectives, Scope) -->
+            <div id="overview" class="content-section active space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">Hotel Management System with Online Booking </h2>
+                    <p class="mt-2 text-lg text-slate-600">A new web setup to make operations smooth, accurate, and customer-friendly.</p>
+                </header>
+
+                <article class="bg-white p-6 rounded-xl shadow-lg border border-slate-100">
+                    <h3 class="font-bold text-xl text-slate-800 mb-3">Introduction & Project Scope</h3>
+                    <p class="text-slate-600 leading-relaxed">Hotels need things to run smooth and accurate every day. Old ways of handling bookings, bills, and guest info take too long and mess up a lot. This **web-based Hotel Management System** fixes that by putting all operations online—from customer booking and safe payment to staff management and reports. The project fits **small/medium hotels, resorts, and guest houses** and is designed to grow easily.</p>
+                    <p class="text-slate-600 leading-relaxed mt-2">The parallax page makes the interface look sharp and pulls people in.</p>
+                </article>
+
+                <article>
+                    <h3 class="font-bold text-xl text-slate-800 mb-4">Core Project Objectives</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                            <h4 class="font-semibold text-indigo-700 mb-1">Digital Tool Building</h4>
+                            <p class="text-sm text-slate-600">Build a comprehensive digital tool for booking and running hotel operations.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                            <h4 class="font-semibold text-indigo-700 mb-1">Online Booking & Payments</h4>
+                            <p class="text-sm text-slate-600">Let customers see open rooms, book online, and complete safe, quick payments.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                            <h4 class="font-semibold text-indigo-700 mb-1">Staff Management Dashboard</h4>
+                            <p class="text-sm text-slate-600">Give staff a dashboard to manage rooms, bookings, and customer records efficiently.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                            <h4 class="font-semibold text-indigo-700 mb-1">Fresh User Interface</h4>
+                            <p class="text-sm text-slate-600">Put in a fresh interface with the engaging parallax landing page for ease of use.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 2. Features Section -->
+            <div id="features" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">Key System Features</h2>
+                    <p class="mt-2 text-lg text-slate-600">Functionality covers all customer interactions and administrative controls.</p>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    <!-- User Features -->
+                    <article class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 space-y-4">
+                        <h3 class="font-bold text-xl text-green-600 flex items-center gap-2">Customer Side (Front-End)</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">🖼️</span><div><h4 class="font-semibold">Parallax Landing Page</h4><p class="text-sm text-slate-500">Smooth scroll look and modern vibe built with **HTML/CSS/JavaScript**.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">🔒</span><div><h4 class="font-semibold">Authentication</h4><p class="text-sm text-slate-500">Sign up and log in securely using JWT tokens.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">📅</span><div><h4 class="font-semibold">Room Availability Check</h4><p class="text-sm text-slate-500">Customers can check open rooms and book them online.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">💳</span><div><h4 class="font-semibold">Payment Integration</h4><p class="text-sm text-slate-500">Book and pay right there using Razorpay or Stripe.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-green-500 mt-1">📜</span><div><h4 class="font-semibold">Booking History</h4><p class="text-sm text-slate-500">Check past bookings and retrieve invoices.</p></div></li>
+                        </ul>
+                    </article>
+                    
+                    <!-- Admin Features -->
+                    <article class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 space-y-4">
+                        <h3 class="font-bold text-xl text-red-600 flex items-center gap-2">Admin Side (Back-End)</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3"><span class="text-red-500 mt-1">📊</span><div><h4 class="font-semibold">Dashboard & Reports</h4><p class="text-sm text-slate-500">Shows bookings summary, revenue, occupancy levels, and pulls reports.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-red-500 mt-1">⚙️</span><div><h4 class="font-semibold">Room Inventory Management</h4><p class="text-sm text-slate-500">Manage rooms (add, delete, modify) and services.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-red-500 mt-1">✅</span><div><h4 class="font-semibold">Booking Management</h4><p class="text-sm text-slate-500">System for approving or canceling pending bookings.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-red-500 mt-1">🧑‍💼</span><div><h4 class="font-semibold">Staff & Customer Records</h4><p class="text-sm text-slate-500">Centralized management of all staff and guest data.</p></div></li>
+                            <li class="flex items-start gap-3"><span class="text-red-500 mt-1">🔒</span><div><h4 class="font-semibold">Security & Access</h4><p class="text-sm text-slate-500">Role-based authentication keeps the system locked and secure.</p></div></li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+
+            <!-- 3. Workflow Section (Uses implicit flow from original synopsis) -->
+            <div id="workflow" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">Digital Booking Workflow</h2>
+                    <p class="mt-2 text-lg text-slate-600">The flow of operation, from guest entry to confirmed booking, is fully automated. Click on each step below for details.</p>
+                </header>
+
+                <div class="lg:flex gap-8 items-start">
+                    <div class="flex-1 space-y-4">
+                        <div class="workflow-step selected bg-white p-4 rounded-lg border-2 border-transparent" data-content="step1">
+                            <h4 class="font-semibold text-indigo-700">1. Guest Browsing & Selection</h4>
+                            <p class="text-sm text-slate-600">Customer views the landing page, checks room availability, and selects a room type.</p>
+                        </div>
+                        <div class="text-center text-slate-400">↓</div>
+                        <div class="workflow-step bg-white p-4 rounded-lg border-2 border-transparent" data-content="step2">
+                            <h4 class="font-semibold text-indigo-700">2. Online Booking & Payment</h4>
+                            <p class="text-sm text-slate-600">The guest confirms the booking details and completes the secure online payment via the integrated gateway.</p>
+                        </div>
+                        <div class="text-center text-slate-400">↓</div>
+                        <div class="workflow-step bg-white p-4 rounded-lg border-2 border-transparent" data-content="step3">
+                            <h4 class="font-semibold text-indigo-700">3. Automated Confirmation</h4>
+                            <p class="text-sm text-slate-600">System processes the payment, confirms the booking status, and generates the digital invoice/history record.</p>
+                        </div>
+                        <div class="text-center text-slate-400">↓</div>
+                        <div class="workflow-step bg-white p-4 rounded-lg border-2 border-transparent" data-content="step4">
+                            <h4 class="font-semibold text-indigo-700">4. Admin Notification & Review</h4>
+                            <p class="text-sm text-slate-600">The admin dashboard updates instantly, notifying staff of the new, confirmed booking for necessary internal processing.</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 mt-8 lg:mt-0 bg-white p-6 rounded-xl shadow-lg border border-slate-200 min-h-[20rem]">
+                        <h3 id="workflow-title" class="text-xl font-bold text-slate-800 mb-4">Guest Browsing & Selection</h3>
+                        <p id="workflow-description" class="text-slate-600 leading-relaxed">The guest's journey begins with the visually engaging parallax landing page. After a successful authentication (using JWT), they use the real-time availability checker to choose a suitable room based on criteria like date, room type, and price. This step is designed to be highly intuitive, leveraging the modern UI built with **HTML, CSS, and JavaScript**.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Architecture Section (Updated for HTML/JS/CSS/Node/Mongo-MySQL) -->
+            <div id="architecture" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">System Architecture & Technology Stack</h2>
+                    <p class="mt-2 text-lg text-slate-600">The system is built on a modern, robust stack for reliability and performance.</p>
+                </header>
+                
+                <div>
+                    <!-- Module Selectors -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div id="module-customer" class="module-box selected bg-white p-4 rounded-lg border-2 border-transparent">
+                            <h4 class="font-semibold text-lg">👤 Customer Module</h4>
+                        </div>
+                        <div id="module-admin" class="module-box bg-white p-4 rounded-lg border-2 border-transparent">
+                            <h4 class="font-semibold text-lg">🛠️ Admin Module</h4>
+                        </div>
+                        <div id="module-payment" class="module-box bg-white p-4 rounded-lg border-2 border-transparent">
+                            <h4 class="font-semibold text-lg">💳 Payment Module</h4>
+                        </div>
+                        <div id="module-database" class="module-box bg-white p-4 rounded-lg border-2 border-transparent">
+                            <h4 class="font-semibold text-lg">💾 Database Module</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Module Descriptions -->
+                    <div class="mt-6 bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <div id="desc-customer" class="module-desc">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Customer Module</h4>
+                            <p class="text-slate-600 mb-4">The customer-facing layer handles UI/UX, user authentication, and booking input.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>**Functionality:** Browsing rooms, checking availability, making payments, viewing history.</li>
+                                <li>**Technologies:** **HTML, JavaScript**, TailwindCSS.</li>
+                            </ul>
+                        </div>
+                        <div id="desc-admin" class="module-desc hidden">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Admin Module</h4>
+                            <p class="text-slate-600 mb-4">The core control center for hotel staff to manage operations efficiently.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>**Functionality:** Room inventory (CRUD), staff management, booking approval, report generation.</li>
+                                <li>**Technologies:** Node.js/Express.js, JWT for role-based access.</li>
+                            </ul>
+                        </div>
+                        <div id="desc-payment" class="module-desc hidden">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Payment Module</h4>
+                            <p class="text-slate-600 mb-4">Securing all financial transactions and ensuring data safety.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>**Functionality:** Handling online payment processing and transaction records.</li>
+                                <li>**Technologies:** Integrated with Razorpay or Stripe.</li>
+                            </ul>
+                        </div>
+                        <div id="desc-database" class="module-desc hidden">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Database Module</h4>
+                            <p class="text-slate-600 mb-4">The persistent data layer, ensuring security and data consistency.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>**Functionality:** Stores user data, room info, booking logs, and transaction details.</li>
+                                <li>**Technologies:** **MongoDB** or **MySQL**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <article>
+                    <h3 class="font-bold text-xl text-slate-800 mb-4">Core Technology Stack</h3>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                        <div class="flex flex-col items-center gap-2"><p class="text-4xl text-amber-500">⚡</p><span class="font-semibold">HTML / JS (Frontend)</span></div>
+                        <div class="flex flex-col items-center gap-2"><p class="text-4xl text-sky-500">🌬️</p><span class="font-semibold">TailwindCSS (Styling)</span></div>
+                        <div class="flex flex-col items-center gap-2"><p class="text-4xl text-green-600">🟢</p><span class="font-semibold">Node.js / Express (Backend)</span></div>
+                        <div class="flex flex-col items-center gap-2"><p class="text-4xl text-green-700">🍃</p><span class="font-semibold">MongoDB / MySQL (DB)</span></div>
+                        <div class="flex flex-col items-center gap-2"><p class="text-4xl text-amber-500">🔑</p><span class="font-semibold">JWT (Authentication)</span></div>
+                        <div class="flex flex-col items-center gap-2"><p class="text-4xl">🚀</p><span class="font-semibold">Vercel/Render (Deployment)</span></div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 5. Benefits Section -->
+            <div id="benefits" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">System Advantages</h2>
+                    <p class="mt-2 text-lg text-slate-600">The key benefits of moving to a digital hotel management platform.</p>
+                </header>
+
+                <article class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-xl text-slate-800 mb-4">Why Digitalize? (6. Advantages)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex items-start gap-4">
+                            <span class="text-2xl pt-1">✅</span>
+                            <div><h4 class="font-semibold text-indigo-700">Accuracy & Speed</h4><p class="text-sm text-slate-600">Cuts down errors from doing it by hand. No more waiting around.</p></div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex items-start gap-4">
+                            <span class="text-2xl pt-1">⏰</span>
+                            <div><h4 class="font-semibold text-indigo-700">24/7 Customer Access</h4><p class="text-sm text-slate-600">Customers can book anytime, day or night. Makes them like it more.</p></div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex items-start gap-4">
+                            <span class="text-2xl pt-1">🛡️</span>
+                            <div><h4 class="font-semibold text-indigo-700">Data Integrity & Security</h4><p class="text-sm text-slate-600">Data stays right, payments safe. Logins keep it locked.</p></div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex items-start gap-4">
+                            <span class="text-2xl pt-1">📈</span>
+                            <div><h4 class="font-semibold text-indigo-700">Future Growth</h4><p class="text-sm text-slate-600">Grows with new stuff added later and easily expands to new branches.</p></div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex items-start gap-4">
+                            <span class="text-2xl pt-1">✨</span>
+                            <div><h4 class="font-semibold text-indigo-700">Professional Image</h4><p class="text-sm text-slate-600">That parallax design boosts the hotel's image. Looks pro.</p></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- 6. Future Enhancements Section -->
+            <div id="future" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">Future Enhancements</h2>
+                    <p class="mt-2 text-lg text-slate-600">Planned steps to extend the system's capabilities for long-term value (7. Future Enhancements).</p>
+                </header>
+                
+                <article class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-xl text-slate-800 mb-4">Future Growth Vision</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100"><h4 class="font-semibold text-indigo-700">📱 Mobile App Integration</h4><p class="text-sm text-slate-600">Add a mobile app for phones, Android and iOS versions.</p></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100"><h4 class="font-semibold text-indigo-700">🤖 AI Recommendations</h4><p class="text-sm text-slate-600">Use AI to suggest deals and rooms based on what people like.</p></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100"><h4 class="font-semibold text-indigo-700">💬 Customer Service Chatbot</h4><p class="text-sm text-slate-600">Put in a chatbot for quick help and query resolution.</p></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100"><h4 class="font-semibold text-indigo-700">🌍 Multi-Language Support</h4><p class="text-sm text-slate-600">Support more languages for folks from other countries.</p></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100"><h4 class="font-semibold text-indigo-700">🔗 System Linkages</h4><p class="text-sm text-slate-600">Link up with other hotel services like restaurants and transport.</p></div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 7. Conclusion Section -->
+            <div id="conclusion" class="content-section space-y-8">
+                <header>
+                    <h2 class="text-3xl font-bold text-slate-900">Conclusion</h2>
+                    <p class="mt-2 text-lg text-slate-600">A final summary of the system's impact and deliverables (8. Conclusion).</p>
+                </header>
+                <article class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-xl text-slate-800 mb-3">Project Outcome Summary</h3>
+                    <p class="text-slate-600 leading-relaxed">This Hotel Management System works as a full web tool. It makes operations simpler. Customers get happier. Online booking, safe pays, admin controls, parallax page all fit together. **Function and style mix well. Accuracy, speed, and a professional feel come through**. Customers and staff both rely on it.</p>
+                </article>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const workflowSteps = document.querySelectorAll('.workflow-step');
+            const workflowTitle = document.getElementById('workflow-title');
+            const workflowDescription = document.getElementById('workflow-description');
+            
+            const moduleBoxes = document.querySelectorAll('.module-box');
+            const moduleDescs = document.querySelectorAll('.module-desc');
+
+            const workflowContent = {
+                step1: {
+                    title: 'Guest Browsing & Selection',
+                    description: 'The guest\'s journey begins with the visually engaging parallax landing page. After a successful authentication (using JWT), they use the real-time availability checker to choose a suitable room based on criteria like date, room type, and price. This step is designed to be highly intuitive, leveraging the modern UI built with HTML, CSS, and JavaScript.'
+                },
+                step2: {
+                    title: 'Online Booking & Payment',
+                    description: 'Once a room is selected, the guest confirms details and is routed to the secure Payment Module. They complete the transaction using their preferred method (via Razorpay or Stripe integration). The system logs the payment record immediately.'
+                },
+                step3: {
+                    title: 'Automated Confirmation',
+                    description: 'Post-payment, the system instantly updates the room status in the database, sends an automated confirmation email to the guest, and generates a digital invoice and booking history entry. This ensures immediate feedback and record accuracy.'
+                },
+                step4: {
+                    title: 'Admin Notification & Review',
+                    description: 'The system notifies the hotel staff via the Admin Dashboard. Staff can review the confirmed booking, allocate resources (if necessary), and prepare for the guest\'s arrival. Role-based security ensures only authorized personnel can access and manage these records.'
+                }
+            };
+            
+            function showSection(targetId) {
+                // Deactivate all content sections and navigation links
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Activate the target section and link
+                const targetSection = document.getElementById(targetId);
+                const targetLink = document.querySelector(`[data-target="${targetId}"]`);
+                
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                if (targetLink) {
+                    targetLink.classList.add('active');
+                }
+                window.scrollTo(0, 0);
+            }
+
+            // Navigation Handler
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.dataset.target;
+                    showSection(targetId);
+                    window.history.pushState(null, '', `#${targetId}`);
+                });
+            });
+
+            // Workflow Step Handler
+            workflowSteps.forEach(step => {
+                step.addEventListener('click', () => {
+                    workflowSteps.forEach(s => s.classList.remove('selected'));
+                    step.classList.add('selected');
+                    const contentKey = step.dataset.content;
+                    const content = workflowContent[contentKey];
+                    if (content) {
+                        workflowTitle.textContent = content.title;
+                        workflowDescription.textContent = content.description;
+                    }
+                });
+            });
+
+            // Module Box Handler
+            moduleBoxes.forEach(box => {
+                box.addEventListener('click', () => {
+                    moduleBoxes.forEach(b => b.classList.remove('selected'));
+                    box.classList.add('selected');
+                    
+                    const targetId = `desc-${box.id.split('-')[1]}`;
+                    moduleDescs.forEach(desc => {
+                        desc.classList.toggle('hidden', desc.id !== targetId);
+                    });
+                });
+            });
+            
+            // Initialize on Load (handles deep linking/initial load)
+            const initialSection = window.location.hash.substring(1) || 'overview';
+            showSection(initialSection);
+
+        });
+    </script>
+</body>
+</html>
